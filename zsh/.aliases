@@ -29,3 +29,7 @@ alias grhh='git reset --hard HEAD'
 alias gb='git branch'
 alias gba='git branch -a'
 alias gbd='git branch -d'
+
+# Calude
+alias clc='claude -c'
+alias cld='claude --dangerously-skip-permissions -c'
