@@ -1,5 +1,8 @@
 # 터미널
 brew "zsh"
+brew "zsh-syntax-highlighting"
+brew "zsh-autosuggestions"
+brew "zsh-completions"
 brew "starship"
 brew "tmux"
 brew "neovim"
