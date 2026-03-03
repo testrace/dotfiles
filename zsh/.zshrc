@@ -11,13 +11,8 @@ eval "$(zoxide init zsh)"
 export EDITOR=nvim
 export VISUAL=nvim
 
-# 별칭
-alias vi='nvim'
-alias vim='nvim'
-alias ls='eza'
-alias ll='eza -la'
-alias cat='bat'
-alias cd='z'
+# Aliases (별도 파일)
+source ~/.aliases
 
 # 히스토리
 HISTSIZE=10000
