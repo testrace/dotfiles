@@ -1,5 +1,3 @@
-tap "homebrew/cask-fonts"
-
 # 터미널
 brew "zsh"
 brew "starship"
@@ -16,6 +14,7 @@ brew "bat"
 brew "eza"
 brew "yazi"
 brew "btop"
+brew "stow"
 
 # Git
 brew "git"
@@ -33,8 +32,8 @@ cask "docker"
 
 # macOS 앱
 cask "raycast"
-cask "nikitabobko/tap/aerospace" 
+cask "nikitabobko/tap/aerospace"
 
 # 폰트
 cask "font-jetbrains-mono-nerd-font"
-brew "font-sarasa-gothic"
+cask "font-sarasa-gothic"
