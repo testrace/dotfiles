@@ -1,0 +1,33 @@
+[init]
+    defaultbranch = main
+
+[user]
+    name = YOUR_NAME
+    email = YOUR_NAME
+    
+[core]
+    editor = nvim
+    pager = delta
+    autocrlf = input
+ 
+[delta]
+    navigate = true
+    light = false
+    line-numbers = true
+    side-by-side = true
+    
+[interactive]
+    diffFilter = delta --color-only
+    
+[merge]
+    conflictstyle = diff3
+    
+[diff]
+    colorMoved = default
+    
+[alias]
+    st = status
+    co = checkout
+    br = branch
+    ci = commit
+    lg = log --graph --oneline --all

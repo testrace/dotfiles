@@ -1,0 +1,31 @@
+# Starship 프롬프트
+eval "$(starship init zsh)"
+
+# fzf
+eval "$(fzf --zsh)"
+
+# zoxide
+eval "$(zoxide init zsh)"
+
+# 기본 설정
+export EDITOR=nvim
+export VISUAL=nvim
+
+# 별칭
+alias vi='nvim'
+alias vim='nvim'
+alias ls='eza'
+alias ll='eza -la'
+alias cat='bat'
+alias cd='z'
+
+# 히스토리
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.zsh_history
+
+export PATH="$HOME/.local/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
