@@ -11,6 +11,8 @@ eval "$(zoxide init zsh)"
 export EDITOR=nvim
 export VISUAL=nvim
 export PRE_COMMIT_COLOR=never
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Aliases (별도 파일)
 source ~/.aliases
