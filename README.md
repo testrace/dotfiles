@@ -13,6 +13,8 @@
 ### 에디터
 - **Neovim (LazyVim)** - 터미널 에디터
 - 행번호, 상대번호 설정
+- 시스템 클립보드 연동
+- vim-tmux-navigator (Ctrl+hjkl로 nvim/tmux 패널 이동)
 
 ### 개발 도구
 - **Git** + delta (diff 뷰어)
@@ -21,6 +23,7 @@
 
 ### macOS
 - **AeroSpace** - 타일링 윈도우 매니저
+- **Hammerspoon** - rcmd→F18 리맵, ESC 시 영문 전환
 - **Homebrew** - 패키지 관리
 
 ### 보안
@@ -66,6 +69,7 @@ stow tmux
 stow nvim
 stow git
 stow aerospace
+stow hammerspoon
 ```
 
 ### 7. tmux 플러그인 설치
@@ -107,6 +111,7 @@ open -a AeroSpace
 - **tmux-sensible** - 합리적인 기본 설정
 - **tmux-resurrect** - 세션 저장/복원
 - **tmux-continuum** - 자동 세션 저장
+- **catppuccin/tmux** - Frappe 테마
 
 ## 업데이트
 ```bash
