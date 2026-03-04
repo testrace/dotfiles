@@ -3,5 +3,8 @@
 -- Add any additional options here
 
 -- 행번호 설정
-vim.opt.number = true           -- 절대 행번호 표시
-vim.opt.relativenumber = true   -- 상대 행번호 표시
+vim.opt.number = true -- 절대 행번호 표시
+vim.opt.relativenumber = true -- 상대 행번호 표시
+
+-- 시스템 클립보드
+vim.opt.clipboard = "unnamedplus"
