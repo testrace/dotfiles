@@ -18,4 +18,3 @@ function back_to_eng()
 end
 
 esc_bind = hs.hotkey.new({}, "escape", back_to_eng):enable()
-
