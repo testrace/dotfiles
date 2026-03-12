@@ -20,6 +20,7 @@
 - **Git** + delta (diff 뷰어)
 - **lazygit** - Git TUI
 - **fzf, ripgrep, fd, bat, eza** - CLI 도구
+- **SDKMAN** - Java 버전 관리
 
 ### macOS
 - **AeroSpace** - 타일링 윈도우 매니저
@@ -70,26 +71,32 @@ stow nvim
 stow git
 stow aerospace
 stow hammerspoon
+stow sdkman
 ```
 
-### 7. tmux 플러그인 설치
+### 7. SDKMAN + Java 설치
+```bash
+./sdkman-install.sh
+```
+
+### 8. tmux 플러그인 설치
 ```bash
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 tmux
 # tmux 안에서 Ctrl+b I (Shift+i) 로 플러그인 설치
 ```
 
-### 8. 쉘 재시작
+### 9. 쉘 재시작
 ```bash
 source ~/.zshrc
 ```
 
-### 9. Pre-commit 훅
+### 10. Pre-commit 훅
 ```bash
 pre-commit install
 ```
 
-### 10. AeroSpace 실행
+### 11. AeroSpace 실행
 ```bash
 open -a AeroSpace
 # 접근성 권한 허용
@@ -104,6 +111,7 @@ open -a AeroSpace
 
 - `git/.gitconfig`는 개인정보라 저장소에 없음
 - `.gitconfig.example`을 복사해서 사용
+- `sdkman/.sdkman/etc/config`로 SDKMAN 설정을 관리하며 `.sdkmanrc` 자동 전환이 켜져 있음
 - Pre-commit 훅이 민감정보 검사
 
 ## tmux 플러그인
