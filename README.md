@@ -111,6 +111,7 @@ open -a AeroSpace
 
 - `git/.gitconfig`는 개인정보라 저장소에 없음
 - `.gitconfig.example`을 복사해서 사용
+- `stow git`는 `~/.config/git/ignore`도 연결하며 `.DS_Store` 등을 전역 무시함
 - `sdkman/.sdkman/etc/config`로 SDKMAN 설정을 관리하며 `.sdkmanrc` 자동 전환이 켜져 있음
 - Pre-commit 훅이 민감정보 검사
 
