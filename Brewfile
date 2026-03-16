@@ -31,7 +31,7 @@ brew "gitleaks"
 # 개발
 brew "asdf"
 brew "direnv"
-cask "docker"
+cask "orbstack"
 
 # macOS 앱
 cask "raycast"
