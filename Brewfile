@@ -6,7 +6,7 @@ brew "zsh-completions"
 brew "starship"
 brew "tmux"
 brew "neovim"
-cask "wezterm"
+cask "ghostty"
 
 # CLI 도구
 brew "fzf"
