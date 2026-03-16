@@ -5,7 +5,7 @@
 ## 포함된 도구
 
 ### 터미널
-- **WezTerm** - GPU 가속 터미널
+- **Ghostty** - GPU 가속 터미널
 - **tmux** - 세션 관리
 - **Starship** - 프롬프트
 - **zsh** - 쉘
@@ -63,7 +63,7 @@ vim git/.gitconfig  # name, email 수정
 
 ### 6. 심볼릭 링크
 ```bash
-stow wezterm
+stow ghostty
 stow zsh
 stow starship
 stow tmux

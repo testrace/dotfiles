@@ -1,0 +1,17 @@
+# Ghostty settings migrated from the old WezTerm defaults where the mapping is straightforward.
+# Everything else stays on Ghostty defaults unless there is a clear reason to override it.
+
+# Fonts
+font-family = JetBrainsMono Nerd Font
+font-family = Sarasa Term K
+font-size = 14
+
+# Theme
+theme = TokyoNight
+
+# Window
+window-padding-x = 10
+window-padding-y = 10
+
+# Keep Ghostty's default no-beep behavior explicit.
+bell-features = no-system,no-audio,attention,title,no-border
