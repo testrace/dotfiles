@@ -7,6 +7,9 @@ eval "$(fzf --zsh)"
 # zoxide
 eval "$(zoxide init zsh)"
 
+# direnv
+eval "$(direnv hook zsh)"
+
 # 기본 설정
 export EDITOR=nvim
 export VISUAL=nvim

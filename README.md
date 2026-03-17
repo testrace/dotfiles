@@ -20,6 +20,7 @@
 - **Git** + delta (diff 뷰어)
 - **lazygit** - Git TUI
 - **fzf, ripgrep, fd, bat, eza** - CLI 도구
+- **direnv** - 프로젝트별 환경변수 자동 전환
 - **SDKMAN** - Java 버전 관리
 
 ### macOS
@@ -90,6 +91,15 @@ tmux
 ```bash
 source ~/.zshrc
 ```
+
+### 9-1. direnv 사용
+```bash
+echo 'export FOO=bar' > .envrc
+direnv allow
+```
+
+- 프로젝트 디렉토리에 들어가면 `.envrc`가 자동 적용됨
+- 처음 보는 `.envrc`는 `direnv allow`로 한 번 승인해야 함
 
 ### 10. Pre-commit 훅
 ```bash
