@@ -30,6 +30,6 @@ alias gb='git branch'
 alias gba='git branch -a'
 alias gbd='git branch -d'
 
-# Calude
-alias clc='claude -c'
-alias cld='claude --dangerously-skip-permissions -c'
+# Claude
+alias cl='claude -c'
+alias cld='claude --dangerously-skip-permissions'
