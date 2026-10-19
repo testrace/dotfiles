@@ -19,6 +19,10 @@ brew "eza"
 brew "yazi"
 brew "btop"
 brew "stow"
+brew "tree"
+brew "coreutils"
+brew "yq"
+brew "ast-grep"
 
 # Git
 brew "git"
@@ -30,13 +34,16 @@ brew "glab"
 brew "gitleaks"
 
 # 개발
-brew "asdf"
 brew "direnv"
 cask "orbstack"
 brew "node"
+brew "go"
+brew "uv"
+brew "shellcheck"
 
 # macOS 앱
 cask "raycast"
+cask "tailscale-app"
 cask "nikitabobko/tap/aerospace"
 
 # 폰트

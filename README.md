@@ -21,20 +21,26 @@
 - **Git** + delta (diff 뷰어)
 - **lazygit** - Git TUI
 - **gh, glab** - GitHub / GitLab CLI
-- **fzf, ripgrep, fd, bat, eza** - CLI 도구
+- **fzf, ripgrep, fd, bat, eza, tree** - CLI 도구
+- **ast-grep** - 코드 구조 기준 검색·치환
+- **yq** - YAML 처리 (JSON은 macOS 기본 `jq`)
+- **coreutils** - GNU 명령 (`gtimeout` 등)
 - **zoxide** - 자주 가는 디렉토리로 빠르게 이동
 - **yazi** - 터미널 파일 관리자
 - **btop** - 시스템 모니터
 - **direnv** - 프로젝트별 환경변수 자동 전환
 - **SDKMAN** - Java 버전 관리
-- **asdf** - 언어 런타임 버전 관리
 - **node** - Node.js
+- **go** - Go
+- **uv** - Python 실행·패키지 관리
+- **shellcheck** - 셸 스크립트 검사
 - **OrbStack** - Docker 컨테이너, Linux VM
 
 ### macOS
 - **AeroSpace** - 타일링 윈도우 매니저
 - **Hammerspoon** - rcmd→F18 리맵, ESC 시 영문 전환, Shift+ESC 시 한글 전환
 - **Raycast** - 런처
+- **Tailscale** - 기기 사이 VPN (원격 작업)
 - **Homebrew** - 패키지 관리
 
 ### 보안
