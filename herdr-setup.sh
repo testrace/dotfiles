@@ -18,16 +18,29 @@ if [[ -e "$HERDR_CONFIG_FILE" && ! -L "$HERDR_CONFIG_FILE" ]]; then
   exit 1
 fi
 mkdir -p "$HERDR_CONFIG_DIR"
-stow --dir="$DOTFILES_DIR" --target="$HOME" herdr
 
-# 2. 파일 뷰어 플러그인
-if herdr plugin list --plugin herdr-file-viewer --json | grep -q '"plugins":\[\]'; then
-  herdr plugin install -y smarzban/herdr-file-viewer
+# 출력을 변수에 먼저 담는다. `herdr ... | grep -q`는 grep이 먼저 끝나면
+# herdr가 SIGPIPE로 종료되고, pipefail 때문에 조건이 거짓이 된다.
+plugin_missing() {
+  local output
+  output="$(herdr plugin list --plugin "$1" --json)"
+  [[ "$output" == *'"plugins":[]'* ]]
+}
+
+# 2. herdr에 tsk 보드 플러그인 등록
+# tsk는 링크된 config.toml을 열지 않으므로 stow보다 먼저 실행한다.
+# tsk가 만든 config.toml은 지운다. 저장소 config.toml에 tsk 단축키가 이미 들어 있다.
+if plugin_missing herdr-tsk; then
+  rm -f "$HERDR_CONFIG_FILE"
+  tsk setup herdr
+  rm -f "$HERDR_CONFIG_FILE"
 fi
 
-# 3. herdr에 tsk 보드 플러그인과 단축키 등록
-if [[ "$(tsk setup herdr --check)" != "bound" ]]; then
-  tsk setup herdr
+stow --dir="$DOTFILES_DIR" --target="$HOME" herdr
+
+# 3. 파일 뷰어 플러그인
+if plugin_missing herdr-file-viewer; then
+  herdr plugin install -y smarzban/herdr-file-viewer
 fi
 
 # 4. Claude Code에 tsk 스킬 설치 (이미 있으면 skill-exists로 거절되며, 그건 정상)
@@ -39,7 +52,8 @@ if ! claude_output="$(tsk setup claude 2>&1)"; then
 fi
 
 # 5. Claude Code가 작업 중인지 herdr에 알려 주는 연결 (대화 복원에도 필요)
-if herdr integration status | grep -q '^claude: not installed'; then
+integration_status="$(herdr integration status)"
+if ! grep -q '^claude: current' <<< "$integration_status"; then
   herdr integration install claude
 fi
 
