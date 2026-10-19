@@ -5,7 +5,8 @@ set -euo pipefail
 export SDKMAN_DIR="${SDKMAN_DIR:-$HOME/.sdkman}"
 
 if [[ ! -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
-  curl -s "https://get.sdkman.io" | bash
+  # 셸 설정은 저장소의 .zshrc가 관리하므로 설치 스크립트가 rc 파일을 고치지 않게 한다
+  curl -s "https://get.sdkman.io?rcupdate=false" | bash
 fi
 
 # shellcheck source=/dev/null

@@ -62,7 +62,12 @@ cp git/.gitconfig.example git/.gitconfig
 vim git/.gitconfig  # name, email 수정
 ```
 
-### 6. 심볼릭 링크
+### 6. SDKMAN + Java 설치
+```bash
+./sdkman-install.sh
+```
+
+### 7. 심볼릭 링크
 ```bash
 stow ghostty
 stow zsh
@@ -72,13 +77,11 @@ stow nvim
 stow git
 stow aerospace
 stow hammerspoon
+rm ~/.sdkman/etc/config  # 6번 설치 스크립트가 만든 기본 config를 지우고 저장소 config로 연결
 stow sdkman
 ```
 
-### 7. SDKMAN + Java 설치
-```bash
-./sdkman-install.sh
-```
+- SDKMAN을 먼저 설치해야 `~/.sdkman`이 실제 폴더로 만들어진다. 순서를 바꾸면 SDKMAN과 JDK가 저장소 안에 설치되고, 설치 스크립트가 저장소의 config에 기본값을 덧붙인다.
 
 ### 8. tmux 플러그인 설치
 ```bash
