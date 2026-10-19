@@ -46,7 +46,7 @@ xcode-select --install
 
 ### 3. Dotfiles 클론
 ```bash
-git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/dotfiles
+git clone https://github.com/testrace/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ```
 
