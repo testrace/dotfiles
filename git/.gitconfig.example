@@ -3,7 +3,7 @@
 
 [user]
     name = YOUR_NAME
-    email = YOUR_NAME
+    email = YOUR_EMAIL
     
 [core]
     editor = nvim
