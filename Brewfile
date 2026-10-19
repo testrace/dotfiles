@@ -32,6 +32,7 @@ brew "gitleaks"
 brew "asdf"
 brew "direnv"
 cask "orbstack"
+brew "node"
 
 # macOS 앱
 cask "raycast"
@@ -40,3 +41,7 @@ cask "nikitabobko/tap/aerospace"
 # 폰트
 cask "font-jetbrains-mono-nerd-font"
 cask "font-sarasa-gothic"
+
+# 기타 도구
+cask "hammerspoon"
+
