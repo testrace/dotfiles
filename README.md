@@ -6,7 +6,8 @@
 
 ### 터미널
 - **Ghostty** - GPU 가속 터미널
-- **tmux** - 세션 관리
+- **herdr** - 터미널 작업 공간 관리 (패널, 탭, 세션 유지, AI 에이전트 상태 표시)
+- **tsk** - 터미널 작업 보드 (herdr, Claude Code와 연결)
 - **Starship** - 프롬프트
 - **zsh** - 쉘
 
@@ -14,7 +15,7 @@
 - **Neovim (LazyVim)** - 터미널 에디터
 - 행번호, 상대번호 설정
 - OSC 52 클립보드 복사 (SSH로 접속해도 지금 보고 있는 기기의 클립보드로 복사)
-- vim-tmux-navigator (Ctrl+hjkl로 nvim/tmux 패널 이동)
+- Ctrl+hjkl로 nvim 창 이동 (LazyVim 기본)
 
 ### 개발 도구
 - **Git** + delta (diff 뷰어)
@@ -79,7 +80,6 @@ vim git/.gitconfig  # name, email 수정
 stow ghostty
 stow zsh
 stow starship
-stow tmux
 stow nvim
 stow git
 stow aerospace
@@ -90,12 +90,13 @@ stow sdkman
 
 - SDKMAN을 먼저 설치해야 `~/.sdkman`이 실제 폴더로 만들어진다. 순서를 바꾸면 SDKMAN과 JDK가 저장소 안에 설치되고, 설치 스크립트가 저장소의 config에 기본값을 덧붙인다.
 
-### 8. tmux 플러그인 설치
+### 8. herdr + tsk 설정
 ```bash
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-tmux
-# tmux 안에서 Ctrl+b I (Shift+i) 로 플러그인 설치
+./herdr-setup.sh
 ```
+
+- `herdr/.config/herdr/config.toml`을 연결하고, 파일 뷰어 플러그인 설치, herdr에 tsk 등록, Claude Code에 tsk 스킬과 herdr 연결 설치를 한 번에 한다
+- 이미 된 단계는 건너뛰므로 여러 번 실행해도 안전하다
 
 ### 9. 쉘 재시작
 ```bash
@@ -133,18 +134,19 @@ open -a AeroSpace
 - `.gitconfig.example`을 복사해서 사용
 - `stow git`는 `~/.config/git/ignore`도 연결하며 `.DS_Store` 등을 전역 무시함
 - `sdkman/.sdkman/etc/config`로 SDKMAN 설정을 관리하며 `.sdkmanrc` 자동 전환이 켜져 있음
+- herdr는 `config.toml`만 저장소에서 관리함. 같은 폴더의 로그, 소켓, 세션 기록은 저장소에 넣지 않음
 - Pre-commit 훅이 민감정보 검사
 
-## tmux 플러그인
+## herdr 
 
-- **tmux-sensible** - 합리적인 기본 설정
-- **tmux-resurrect** - 세션 저장/복원
-- **tmux-continuum** - 자동 세션 저장
-- **catppuccin/tmux** - Frappe 테마
+- herdr와 tsk는 brew로 설치했으므로 `herdr update`, `tsk update` 대신 `brew upgrade`로 업데이트한다
+- brew로 herdr를 업데이트한 뒤에는 `herdr server stop`으로 서버를 껐다가 다시 `herdr`를 실행해야 새 버전이 적용된다
+- `config.toml`을 고친 뒤에는 `herdr server reload-config`로 바로 반영한다
 
 ## 테스트
 ```bash
 bash tests/sdkman-install.test.sh
+bash tests/herdr-setup.test.sh
 nvim -l tests/hammerspoon-init.test.lua
 ```
 
