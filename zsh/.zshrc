@@ -4,9 +4,6 @@ eval "$(starship init zsh)"
 # fzf
 eval "$(fzf --zsh)"
 
-# zoxide
-eval "$(zoxide init zsh)"
-
 # direnv
 eval "$(direnv hook zsh)"
 
@@ -32,3 +29,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # zsh plugins
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# zoxide
+eval "$(zoxide init zsh)"
