@@ -2,6 +2,33 @@
 
 크로스 플랫폼 개발 환경 설정 (macOS 중심)
 
+## 빠른 시작 (Claude Code로 설치, 권장)
+
+Claude Code를 먼저 설치하고, 저장소 폴더에서 세션을 열어 아래 [설치 (새 Mac)](#설치-새-mac) 순서대로 설치를 맡긴다.
+
+```bash
+# 1. git이 들어 있는 Xcode Command Line Tools
+xcode-select --install
+
+# 2. Claude Code (공식 설치 스크립트, 자동 업데이트)
+curl -fsSL https://claude.ai/install.sh | bash
+
+# 3. 저장소를 받고 세션 열기 (처음 실행하면 브라우저로 로그인)
+git clone https://github.com/testrace/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+~/.local/bin/claude
+```
+
+세션에 이렇게 요청한다.
+
+```
+README의 "설치 (새 Mac)" 순서대로 이 Mac을 설치해줘.
+```
+
+- 아직 `~/.zshrc`가 연결되기 전이라 `claude` 대신 `~/.local/bin/claude`로 실행한다
+- Homebrew 설치처럼 비밀번호를 묻는 단계는 세션이 대신 입력할 수 없다. 세션이 안내하면 다른 터미널 창에서 그 명령을 직접 실행한 뒤 세션에 알려 준다
+- Git 이름·이메일, macOS 권한 허용처럼 직접 정해야 하는 단계는 세션이 물어본다
+
 ## 포함된 도구
 
 ### 터미널
@@ -18,6 +45,7 @@
 - Ctrl+hjkl로 nvim 창 이동 (LazyVim 기본)
 
 ### 개발 도구
+- **Claude Code** - AI 코딩 에이전트 (공식 설치 스크립트, 자동 업데이트)
 - **Git** + delta (diff 뷰어)
 - **lazygit** - Git TUI
 - **gh, glab** - GitHub / GitLab CLI
@@ -96,7 +124,15 @@ stow sdkman
 
 - SDKMAN을 먼저 설치해야 `~/.sdkman`이 실제 폴더로 만들어진다. 순서를 바꾸면 SDKMAN과 JDK가 저장소 안에 설치되고, 설치 스크립트가 저장소의 config에 기본값을 덧붙인다.
 
-### 8. herdr + tsk 설정
+### 8. Claude Code 설정
+```bash
+./claude-setup.sh
+```
+
+- `CLAUDE.md`를 연결하고, 상태줄 스크립트를 복사하고, `claude/settings.base.json`을 `~/.claude/settings.json`에 합친다
+- 9번보다 먼저 실행한다. 둘 다 `settings.json`을 고치지만 기존 값을 지우지 않으므로 순서가 바뀌어도 결과는 같다
+
+### 9. herdr + tsk 설정
 ```bash
 ./herdr-setup.sh
 ```
@@ -104,12 +140,12 @@ stow sdkman
 - `herdr/.config/herdr/config.toml`을 연결하고, 파일 뷰어 플러그인 설치, herdr에 tsk 등록, Claude Code에 tsk 스킬과 herdr 연결 설치를 한 번에 한다
 - 이미 된 단계는 건너뛰므로 여러 번 실행해도 안전하다
 
-### 9. 쉘 재시작
+### 10. 쉘 재시작
 ```bash
 source ~/.zshrc
 ```
 
-### 10. direnv 사용
+### 11. direnv 사용
 ```bash
 echo 'export FOO=bar' > .envrc
 direnv allow
@@ -118,12 +154,12 @@ direnv allow
 - 프로젝트 디렉토리에 들어가면 `.envrc`가 자동 적용됨
 - 처음 보는 `.envrc`는 `direnv allow`로 한 번 승인해야 함
 
-### 11. Pre-commit 훅
+### 12. Pre-commit 훅
 ```bash
 pre-commit install
 ```
 
-### 12. AeroSpace 실행
+### 13. AeroSpace 실행
 ```bash
 open -a AeroSpace
 # 접근성 권한 허용
@@ -141,6 +177,8 @@ open -a AeroSpace
 - `stow git`는 `~/.config/git/ignore`도 연결하며 `.DS_Store` 등을 전역 무시함
 - `sdkman/.sdkman/etc/config`로 SDKMAN 설정을 관리하며 `.sdkmanrc` 자동 전환이 켜져 있음
 - herdr는 `config.toml`만 저장소에서 관리함. 같은 폴더의 로그, 소켓, 세션 기록은 저장소에 넣지 않음
+- Claude Code는 `CLAUDE.md`(링크), 상태줄 스크립트(복사), `settings.base.json`(합치기)만 관리함. `settings.json`은 Claude Code, herdr, 플러그인이 계속 고치는 파일이라 링크하지 않음
+- Claude Code만 brew가 아니라 공식 설치 스크립트로 설치함 (Homebrew보다 먼저 설치하고, 스스로 업데이트함)
 - Pre-commit 훅이 민감정보 검사
 
 ## herdr 
@@ -153,6 +191,7 @@ open -a AeroSpace
 ```bash
 bash tests/sdkman-install.test.sh
 bash tests/herdr-setup.test.sh
+bash tests/claude-setup.test.sh
 nvim -l tests/hammerspoon-init.test.lua
 ```
 
@@ -161,4 +200,5 @@ nvim -l tests/hammerspoon-init.test.lua
 cd ~/dotfiles
 git pull
 brew bundle  # 새 패키지 설치
+./claude-setup.sh  # 상태줄 스크립트, 기본 설정 다시 반영 (복사·합치기라 자동으로 바뀌지 않음)
 ```
