@@ -9,6 +9,15 @@ DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 HERDR_CONFIG_DIR="$HOME/.config/herdr"
 HERDR_CONFIG_FILE="$HERDR_CONFIG_DIR/config.toml"
 
+# ~/.config/herdr가 링크면 멈춘다. 링크를 따라가 다른 곳(예: 이 저장소)의 파일을 지우거나 덮어쓰게 된다.
+refuse_linked_config_dir() {
+  if [[ -L "$HERDR_CONFIG_DIR" ]]; then
+    echo "$HERDR_CONFIG_DIR 가 링크입니다 ($(readlink "$HERDR_CONFIG_DIR")). 일반 폴더로 바꾼 뒤 다시 실행하세요." >&2
+    exit 1
+  fi
+}
+refuse_linked_config_dir
+
 # 1. config.toml만 저장소로 연결한다.
 # 폴더를 먼저 만들어야 stow가 폴더 전체를 링크하지 않는다.
 # 그러지 않으면 herdr의 로그, 소켓, 세션 기록이 저장소 안에 쌓인다.
@@ -37,6 +46,7 @@ if plugin_missing herdr-tsk; then
 fi
 
 stow --dir="$DOTFILES_DIR" --target="$HOME" herdr
+refuse_linked_config_dir
 
 # 3. 파일 뷰어 플러그인
 if plugin_missing herdr-file-viewer; then

@@ -128,6 +128,15 @@ linked_config() {
   ln -s /repo/herdr/.config/herdr/config.toml "$1/.config/herdr/config.toml"
 }
 
+linked_config_dir() {
+  mkdir -p "$1/.config" "$TMP_DIR/elsewhere-$2"
+  # config.toml이 없어야 안전장치가 없을 때 스크립트가 링크 너머에서 작업을 이어 간다
+  echo 'keep me' > "$TMP_DIR/elsewhere-$2/other.log"
+  ln -s "$TMP_DIR/elsewhere-$2" "$1/.config/herdr"
+}
+
+linked_config_dir_case() { linked_config_dir "$1" linked; }
+
 existing_config_file() {
   mkdir -p "$1/.config/herdr"
   echo 'onboarding = false' > "$1/.config/herdr/config.toml"
@@ -139,7 +148,7 @@ herdr plugin install -y smarzban/herdr-file-viewer
 tsk setup claude
 herdr integration install claude"
 
-run_case rerun done 0 "stow --dir=$ROOT_DIR --target=$TMP_DIR/home-rerun herdr (dir ready)
+run_case rerun "done" 0 "stow --dir=$ROOT_DIR --target=$TMP_DIR/home-rerun herdr (dir ready)
 tsk setup claude" linked_config
 
 run_case tsk-missing tsk-missing 0 "tsk setup herdr
@@ -147,6 +156,12 @@ stow --dir=$ROOT_DIR --target=$TMP_DIR/home-tsk-missing herdr (dir ready)
 tsk setup claude" linked_config
 
 run_case existing-config fresh 1 "" existing_config_file
+
+run_case linked-config-dir fresh 1 "" linked_config_dir_case
+if [[ "$(cat "$TMP_DIR/elsewhere-linked/other.log")" != 'keep me' || -e "$TMP_DIR/elsewhere-linked/config.toml" ]]; then
+  failures=$((failures + 1))
+  echo "FAIL: linked-config-dir: file behind the link was changed" >&2
+fi
 
 if [[ "$failures" -gt 0 ]]; then
   exit 1
