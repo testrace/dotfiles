@@ -19,13 +19,21 @@
 ### 개발 도구
 - **Git** + delta (diff 뷰어)
 - **lazygit** - Git TUI
+- **gh, glab** - GitHub / GitLab CLI
 - **fzf, ripgrep, fd, bat, eza** - CLI 도구
+- **zoxide** - 자주 가는 디렉토리로 빠르게 이동
+- **yazi** - 터미널 파일 관리자
+- **btop** - 시스템 모니터
 - **direnv** - 프로젝트별 환경변수 자동 전환
 - **SDKMAN** - Java 버전 관리
+- **asdf** - 언어 런타임 버전 관리
+- **node** - Node.js
+- **OrbStack** - Docker 컨테이너, Linux VM
 
 ### macOS
 - **AeroSpace** - 타일링 윈도우 매니저
-- **Hammerspoon** - rcmd→F18 리맵, ESC 시 영문 전환
+- **Hammerspoon** - rcmd→F18 리맵, ESC 시 영문 전환, Shift+ESC 시 한글 전환
+- **Raycast** - 런처
 - **Homebrew** - 패키지 관리
 
 ### 보안
@@ -53,7 +61,6 @@ cd ~/dotfiles
 ### 4. 패키지 설치
 ```bash
 brew bundle
-brew install stow
 ```
 
 ### 5. Git 설정 (개인 정보)
@@ -95,7 +102,7 @@ tmux
 source ~/.zshrc
 ```
 
-### 9-1. direnv 사용
+### 10. direnv 사용
 ```bash
 echo 'export FOO=bar' > .envrc
 direnv allow
@@ -104,12 +111,12 @@ direnv allow
 - 프로젝트 디렉토리에 들어가면 `.envrc`가 자동 적용됨
 - 처음 보는 `.envrc`는 `direnv allow`로 한 번 승인해야 함
 
-### 10. Pre-commit 훅
+### 11. Pre-commit 훅
 ```bash
 pre-commit install
 ```
 
-### 11. AeroSpace 실행
+### 12. AeroSpace 실행
 ```bash
 open -a AeroSpace
 # 접근성 권한 허용
@@ -134,6 +141,12 @@ open -a AeroSpace
 - **tmux-resurrect** - 세션 저장/복원
 - **tmux-continuum** - 자동 세션 저장
 - **catppuccin/tmux** - Frappe 테마
+
+## 테스트
+```bash
+bash tests/sdkman-install.test.sh
+nvim -l tests/hammerspoon-init.test.lua
+```
 
 ## 업데이트
 ```bash
