@@ -62,6 +62,8 @@ README의 "설치 (새 Mac)" 순서대로 이 Mac을 설치해줘.
 - **go** - Go
 - **uv** - Python 실행·패키지 관리
 - **shellcheck** - 셸 스크립트 검사
+- **Terraform** - 인프라 구성 코드
+- **Ansible** - 서버 설정 자동화
 - **OrbStack** - Docker 컨테이너, Linux VM
 
 ### macOS

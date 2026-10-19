@@ -1,3 +1,8 @@
+# 외부 저장소 (새 Mac에서 brew bundle이 먼저 등록하도록 명시)
+tap "hashicorp/tap"
+tap "nikitabobko/tap"
+tap "smarzban/tap"
+
 # 터미널
 brew "zsh"
 brew "zsh-syntax-highlighting"
@@ -40,6 +45,8 @@ brew "node"
 brew "go"
 brew "uv"
 brew "shellcheck"
+brew "hashicorp/tap/terraform"
+brew "ansible"
 
 # macOS 앱
 cask "raycast"
