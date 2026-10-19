@@ -13,7 +13,7 @@
 ### 에디터
 - **Neovim (LazyVim)** - 터미널 에디터
 - 행번호, 상대번호 설정
-- 시스템 클립보드 연동
+- OSC 52 클립보드 복사 (SSH로 접속해도 지금 보고 있는 기기의 클립보드로 복사)
 - vim-tmux-navigator (Ctrl+hjkl로 nvim/tmux 패널 이동)
 
 ### 개발 도구
