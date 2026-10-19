@@ -165,6 +165,14 @@ open -a AeroSpace
 # 접근성 권한 허용
 ```
 
+### 14. Tailscale 로그인
+```bash
+open -a Tailscale
+# 메뉴 막대의 Tailscale에서 로그인하고 VPN 구성 허용
+```
+
+- 다른 Mac에서 이 Mac으로 접속하려면 [원격 작업](#원격-작업)도 설정한다
+
 ## 폰트
 
 - **JetBrains Mono Nerd Font** - 영문, 아이콘
@@ -186,6 +194,28 @@ open -a AeroSpace
 - herdr와 tsk는 brew로 설치했으므로 `herdr update`, `tsk update` 대신 `brew upgrade`로 업데이트한다
 - brew로 herdr를 업데이트한 뒤에는 `herdr server stop`으로 서버를 껐다가 다시 `herdr`를 실행해야 새 버전이 적용된다
 - `config.toml`을 고친 뒤에는 `herdr server reload-config`로 바로 반영한다
+
+## 원격 작업
+
+Tailscale로 묶인 Mac끼리 기기 이름으로 SSH 접속해서 작업한다. 설정 파일은 저장소에 없다 (Tailscale 계정과 관리 화면에서 관리).
+
+**1. 기기 이름 확인**
+```bash
+tailscale status   # 두 번째 열이 기기 이름 (MagicDNS)
+```
+
+**2. 접속받는 Mac에서 원격 로그인 켜기**
+
+시스템 설정 → 일반 → 공유 → **원격 로그인**을 켠다. Tailscale SSH(`tailscale up --ssh`)는 쓰지 않고 macOS 기본 SSH를 쓴다.
+
+**3. 접속하기**
+```bash
+ssh <기기 이름>                    # 셸만 필요할 때
+herdr --remote <기기 이름>         # 원격 Mac의 herdr에 바로 붙기
+herdr machine add <기기 이름>      # 원격 Mac을 저장해 두고 herdr 사이드바에서 열기
+```
+
+- nvim에서 복사한 내용은 OSC 52로 지금 보고 있는 Mac의 클립보드에 들어간다. 다른 곳에서 복사한 글은 터미널 붙여넣기(⌘V)로 넣는다
 
 ## 테스트
 ```bash
