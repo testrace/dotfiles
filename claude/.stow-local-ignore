@@ -1,0 +1,4 @@
+# stow로 링크하지 않는 파일. claude-setup.sh가 복사하거나 settings.json에 합친다.
+^/statusline-command\.sh$
+^/settings\.base\.json$
+^/\.stow-local-ignore$
