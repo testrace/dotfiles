@@ -1,5 +1,5 @@
 #!/bin/bash
-# Claude Code status line: directory, git branch, model, context usage
+# Claude Code status line: directory, git branch + changes, model, context usage
 input=$(cat)
 
 dir=$(echo "$input" | jq -r '.workspace.current_dir // .cwd // empty')
@@ -12,8 +12,26 @@ case "$dir" in
 esac
 out=$(printf '\033[34m%s\033[0m' "$short_dir")
 
-branch=$(git -C "$dir" --no-optional-locks branch --show-current 2>/dev/null)
-[ -n "$branch" ] && out+=$(printf ' \033[32m(%s)\033[0m' "$branch")
+# Git: branch plus working tree changes from a single `git status` call.
+#   +N staged, ~N modified, ?N untracked, !N conflicts, ↑N/↓N ahead/behind upstream
+if gs=$(git -C "$dir" --no-optional-locks status --porcelain=v2 --branch 2>/dev/null); then
+  branch=$(awk '/^# branch.head /{print $3}' <<<"$gs")
+  [ "$branch" = "(detached)" ] && branch=$(awk '/^# branch.oid /{print substr($3,1,7)}' <<<"$gs")
+  read -r staged modified untracked conflicts ahead behind < <(awk '
+    /^# branch.ab /   {a=substr($3,2); b=substr($4,2)}
+    /^[12] /          {if (substr($2,1,1)!=".") s++; if (substr($2,2,1)!=".") m++}
+    /^u /             {c++}
+    /^\? /            {u++}
+    END {print s+0, m+0, u+0, c+0, a+0, b+0}' <<<"$gs")
+  changes=""
+  [ "$staged" -gt 0 ]    && changes+=$(printf ' \033[32m+%d\033[0m' "$staged")
+  [ "$modified" -gt 0 ]  && changes+=$(printf ' \033[33m~%d\033[0m' "$modified")
+  [ "$untracked" -gt 0 ] && changes+=$(printf ' \033[90m?%d\033[0m' "$untracked")
+  [ "$conflicts" -gt 0 ] && changes+=$(printf ' \033[31m!%d\033[0m' "$conflicts")
+  [ "$ahead" -gt 0 ]     && changes+=$(printf ' \033[36m↑%d\033[0m' "$ahead")
+  [ "$behind" -gt 0 ]    && changes+=$(printf ' \033[36m↓%d\033[0m' "$behind")
+  [ -n "$branch" ] && out+=$(printf ' \033[32m(%s\033[0m%s\033[32m)\033[0m' "$branch" "$changes")
+fi
 
 [ -n "$model" ] && out+=$(printf ' \033[35m%s\033[0m' "$model")
 # Additional items: context usage and rate limits (joined onto the same line)
