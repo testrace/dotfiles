@@ -96,9 +96,13 @@ cd ~/dotfiles
 ```
 
 ### 4. 패키지 설치
+외부 탭(tap)의 패키지는 신뢰 등록을 해야 Homebrew가 설치해요. 탭 전체가 아니라 쓰는 패키지만 신뢰 등록해요.
 ```bash
+brew trust --formula hashicorp/tap/terraform smarzban/tap/tsk
+brew trust --cask nikitabobko/tap/aerospace
 brew bundle
 ```
+Brewfile에 외부 탭 패키지를 추가하면 여기에도 같이 추가해요.
 
 ### 5. Git 설정 (개인 정보)
 ```bash
