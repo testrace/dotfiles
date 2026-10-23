@@ -54,6 +54,7 @@ cask "godot"
 cask "raycast"
 cask "tailscale-app"
 cask "nikitabobko/tap/aerospace"
+cask "krita"
 
 # 폰트
 cask "font-jetbrains-mono-nerd-font"
