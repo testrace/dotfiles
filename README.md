@@ -59,18 +59,21 @@ README의 "설치 (새 Mac)" 순서대로 이 Mac을 설치해줘.
 - **direnv** - 프로젝트별 환경변수 자동 전환
 - **SDKMAN** - Java 버전 관리
 - **node** - Node.js
+- **pnpm** - Node.js 패키지 관리
 - **go** - Go
 - **uv** - Python 실행·패키지 관리
 - **shellcheck** - 셸 스크립트 검사
 - **Terraform** - 인프라 구성 코드
 - **Ansible** - 서버 설정 자동화
 - **OrbStack** - Docker 컨테이너, Linux VM
+- **Godot** - 2D·3D 게임 엔진
 
 ### macOS
 - **AeroSpace** - 타일링 윈도우 매니저
 - **Hammerspoon** - rcmd→F18 리맵, ESC 시 영문 전환, Shift+ESC 시 한글 전환
 - **Raycast** - 런처
 - **Tailscale** - 기기 사이 VPN (원격 작업)
+- **Krita** - 그림 그리기 프로그램
 - **Homebrew** - 패키지 관리
 
 ### 보안
