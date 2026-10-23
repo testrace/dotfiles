@@ -48,6 +48,7 @@ brew "uv"
 brew "shellcheck"
 brew "hashicorp/tap/terraform"
 brew "ansible"
+cask "godot"
 
 # macOS 앱
 cask "raycast"
